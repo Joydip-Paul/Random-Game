@@ -1,0 +1,199 @@
+<html>
+    <head>
+        <style>
+        body{
+            background-color: darkgray;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .frame{
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color:cadetblue;
+            min-height: 500px;
+            position: absolute;
+            width: 600px;
+        }
+        .btn{
+            margin-left: 60px;
+            height: 50px;
+            width: 200px;
+            font-size: 30px;
+            margin-top: 20px;
+            outline: none;
+            background: none;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 10px;
+        }
+        .btn:hover{
+            background-color:darkcyan;
+        }
+        .btnx1{
+            margin-left: 120px;
+            margin-top: 20px;
+            min-height: 30px;
+            width: 100px;
+            outline: none;
+            border: none;
+        }
+        .btnx1:hover{
+            background-color:darkcyan;
+        }
+        .btnx2{
+            margin-left: 20px;
+            margin-top: 20px;
+            min-height: 30px;
+            width: 100px;
+            outline: none;
+            border: none;
+        }
+        .btnx2:hover{
+            background-color:darkcyan;
+        }
+        #outputuser1point{
+            font-size: 50px;
+            margin-left: 60px;
+            margin-top: 50px;
+            float: left;
+        }
+        #outputuser2point{
+            font-size: 50px;
+            margin-right: 80px;
+            margin-top: 50px;
+            float: right;
+        }
+        #outputwinuser1{
+            font-size: 30px;
+            margin-top: 100px;
+            margin-left: 220px;
+        }
+        #outputwinuser2{
+            font-size: 30px;
+            margin-top: 100px;
+            margin-left: 220px;
+        }
+        #gameover{
+            font-size: 50px;
+            margin-top: -60px;
+            margin-left: 180px;
+        }
+        h1{
+            text-align: center;
+            color: #fff;
+        }
+        </style>
+    </head>
+    <div class="frame">
+        <h1>Random Game</h1>
+        <button class="btn" type="button" onclick="user()" id="btndis1">User1</button>
+        <button class="btn" type="button" onclick="computer()" id="btndis2">User2</button>
+        <input type="submit" value="reset" onclick="resetbtn()" class="btnx1">
+        <input type="submit" value="Play Again" onclick="playagain()" class="btnx2">
+        <!-- <h1 id="output1"></h1>
+        <h2 id="output2"></h2>
+        <h5 id="output3"></h5>
+        <div id="output4"></div>
+        <div id="gameover"></div>
+        <div class="showoutput"></div> -->
+
+
+        
+        <div id="outputuser1point"></div>
+        <div id="outputuser2point"></div>
+        <div class="box">
+            <div id="outputwinuser1"></div>
+            <div id="outputwinuser2"></div>
+        </div>
+        <div id="gameover"></div>
+        <!-- <div class="showoutput"></div> -->
+
+        </div>
+    <body>
+        <script>
+         var dice = [1,2,3,4,5,6];
+            var len = dice.length;
+            //console.log(length);
+            var i,j;
+            var sum1,sum2;
+            var u = 0;
+            var c = 0;
+            var r = null;
+            function user()
+            {
+                for(i=0;i<len;i++)
+                {
+                    dice[i] = (Math.random());
+                    //console.log(dice[i]);
+
+                    sum1 = u += dice[i];
+                    console.log(sum1);
+                    if(sum1 >= 10)
+                    {
+                        document.getElementById("outputwinuser1").innerHTML = "Win User1";
+                        //console.log("ok");
+                        document.getElementById("btndis1").disabled = true;
+                        document.getElementById("btndis2").disabled = true;
+                        document.getElementById("gameover").innerHTML = "Game Over...";
+                    }
+                    document.getElementById("outputuser1point").innerHTML = Math.floor(sum1);
+                }
+
+            }
+
+
+
+
+
+            function computer()
+            {
+                for(j=0;j<len;j++)
+                {
+                    dice[j] = (Math.random());
+                    console.log(dice[j]);
+
+                    sum2 = c += dice[j];
+                    
+
+                    if(sum2 >= 10)
+                    {
+                        document.getElementById("outputwinuser2").innerHTML = "Win User2";
+                        //console.log("ok");
+						//document.getElementsByClassName("showoutput").innerHTML = Math.floor(sum2);
+                        document.getElementById("btndis2").disabled = true;
+                        document.getElementById("btndis1").disabled = true;
+                        document.getElementById("gameover").innerHTML = "Game Over...";
+                        
+                    }
+                    document.getElementById("outputuser2point").innerHTML = Math.floor(sum2);
+                    //document.getElementsByClassName("showoutput").innerHTML = Math.floor(sum2);
+                }
+            }
+
+
+
+
+            function resetbtn()
+            {
+                // document.getElementById("btndis2").disabled = true;
+                // document.getElementById("btndis1").disabled = true;
+                 u = 0;
+                 c = 0;
+                sum1 = 0;
+                sum2 = 0;
+                document.getElementById("outputuser1point").innerHTML = sum1;
+                document.getElementById("outputuser2point").innerHTML = sum2;
+            }
+            function playagain()
+            {
+                document.getElementById("btndis2").disabled = false;
+                document.getElementById("btndis1").disabled = false;
+                resetbtn();
+
+                document.getElementById("gameover").innerHTML = "";
+                document.getElementById("outputwinuser2").innerHTML = "";
+                document.getElementById("outputwinuser1").innerHTML = "";
+            }
+        </script>
+    </body>
+</html>
